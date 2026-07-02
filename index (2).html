@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Al & Mick's Barbeque — Snead, Alabama's pit-smoked BBQ on US-278. Pulled pork, ribs, chicken plates & homemade sides. 4.4 stars, 814 Google reviews.">
+    <title>Al & Mick's Barbeque | Snead, AL</title>
+    <!-- GOOGLE SEO VERIFICATION — paste your Google Search Console meta tag here -->
+    <!-- <meta name="google-site-verification" content="YOUR_CODE_HERE" /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --parch:#FAFAF8;
+            --parch2:#F2EEE8;
+            --parch3:#E2DDD6;
+            --cream:#FFFFFF;
+            --ink:#1C0D06;
+            --ink2:#2E1A10;
+            --brown:#821510;
+            --brick:#9B1A0C;
+            --brick-lt:#C02515;
+            --sienna:#B85C1A;
+            --gold:#C89228;
+            --gold-lt:#DBA830;
+            --white:#FFFFFF;
+            --gray:#8A7060;
+            --gray-lt:#B0A090;
+            --fser:'Playfair Display',Georgia,serif;
+            --fbod:'Lora',Georgia,serif;
+            --fcap:'Oswald',sans-serif;
+            --ease:0.28s ease;
+            --navH:68px;
+            --shadow:0 8px 40px rgba(28,13,6,.12);
+            --shadow-sm:0 2px 16px rgba(28,13,6,.08);
+        }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+        body{background:var(--parch);color:var(--ink2);font-family:var(--fbod);line-height:1.7;overflow-x:hidden}
+        ::-webkit-scrollbar{width:5px}
+        ::-webkit-scrollbar-track{background:var(--parch2)}
+        ::-webkit-scrollbar-thumb{background:var(--brick);border-radius:3px}
+        img{display:block;max-width:100%}
+
+        /* ── TEXTURE OVERLAY ── */
+        body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            opacity:.6}
+
+        /* ── NAV ── */
+        nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--navH);
+            display:flex;align-items:center;justify-content:space-between;
+            padding:0 56px;
+            transition:background var(--ease),box-shadow var(--ease),border-color var(--ease)}
+        nav.scrolled{background:rgba(247,240,227,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+            box-shadow:0 1px 0 var(--parch3),var(--shadow-sm)}
+        .nav-logo{font-family:var(--fser);font-size:1.25rem;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:.01em}
+        .nav-logo em{color:var(--brick);font-style:normal}
+        .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+        .nav-links a{font-family:var(--fcap);font-size:.72rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--brown);text-decoration:none;transition:color var(--ease)}
+        .nav-links a:hover{color:var(--brick)}
+        .nav-cta{background:var(--brick)!important;color:var(--white)!important;padding:8px 20px;border-radius:2px;letter-spacing:.1em!important;transition:background var(--ease)!important}
+        .nav-cta:hover{background:var(--brick-lt)!important}
+        .hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;flex-shrink:0}
+        .hbg span{display:block;width:22px;height:1.5px;background:var(--ink);transition:transform .3s,opacity .3s;transform-origin:center}
+        .hbg.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+        .hbg.open span:nth-child(2){opacity:0}
+        .hbg.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+        .mob{position:fixed;top:var(--navH);left:0;right:0;z-index:999;background:rgba(247,240,227,.98);
+            border-bottom:1px solid var(--parch3);max-height:0;overflow:hidden;transition:max-height .35s ease}
+        .mob.open{max-height:500px}
+        .mob-inner{padding:12px 32px 32px;display:flex;flex-direction:column;gap:0}
+        .mob a{font-family:var(--fcap);font-size:.95rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;
+            color:var(--brown);text-decoration:none;padding:13px 0;border-bottom:1px solid var(--parch3);display:block}
+        .mob a:last-child{border-bottom:none}
+        .mob a:hover{color:var(--brick)}
+        .mob .mob-cta{margin-top:16px;text-align:center;background:var(--brick);color:var(--white)!important;
+            padding:14px;border-radius:2px;border-bottom:none!important}
+
+        /* ── HERO ── */
+        .hero{min-height:100vh;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+        .hero-bg{position:absolute;inset:0;background:#FAFAF8}
+        .hero-ov{display:none}
+        .hero-c{position:relative;z-index:2;text-align:center;padding:calc(var(--navH) + 80px) 32px 100px;max-width:820px}
+        .hero-rule{display:flex;align-items:center;gap:16px;justify-content:center;margin-bottom:28px}
+        .hero-rule span{width:48px;height:1px;background:var(--parch3)}
+        .hero-rule em{font-family:var(--fcap);font-size:.68rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase;color:var(--sienna);font-style:normal}
+        .hero-title{font-family:var(--fser);font-size:clamp(3.2rem,9vw,7rem);font-weight:900;line-height:.92;color:var(--ink);letter-spacing:-.02em}
+        .hero-title .amp{color:var(--brick);font-style:italic;font-weight:400}
+        .hero-sub{font-family:var(--fcap);font-size:.85rem;font-weight:300;letter-spacing:.28em;text-transform:uppercase;color:var(--gray);margin-top:20px}
+        .hero-divider{width:1px;height:48px;background:var(--parch3);margin:32px auto}
+        .hero-desc{font-family:var(--fbod);font-size:1rem;color:var(--brown);max-width:440px;margin:0 auto 44px;line-height:1.8;font-style:italic}
+        .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+        .hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+            font-family:var(--fcap);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+            color:rgba(255,255,255,.4);display:flex;flex-direction:column;align-items:center;gap:10px;
+            animation:bob 2.8s ease-in-out infinite}
+        .hero-scroll::after{content:'';width:1px;height:32px;background:linear-gradient(to bottom,rgba(200,146,40,.5),transparent)}
+        @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+        /* ── BUTTONS ── */
+        .btn{display:inline-block;text-decoration:none;font-family:var(--fcap);font-weight:400;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;padding:14px 34px;border-radius:2px;transition:all var(--ease);cursor:pointer;border:none}
+        .btn-brick{background:var(--brick);color:var(--white);box-shadow:0 4px 20px rgba(125,35,16,.3)}
+        .btn-brick:hover{background:var(--brick-lt);transform:translateY(-2px)}
+        .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--parch3)}
+        .btn-ghost:hover{border-color:var(--brown);background:var(--parch2);transform:translateY(-2px)}
+        .btn-outline{background:transparent;color:var(--brick);border:1.5px solid var(--brick)}
+        .btn-outline:hover{background:var(--brick);color:var(--white)}
+        .btn-gold{background:var(--gold-lt);color:#1C0D06!important;font-weight:700;text-decoration:none}
+        .btn-gold:hover{background:var(--gold);color:#1C0D06!important;transform:translateY(-2px)}
+
+        /* ── RIBBON STATS ── */
+        .ribbon{background:var(--ink);color:var(--white);padding:20px 48px}
+        .ribbon-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+        .ribbon-item{display:flex;align-items:center;gap:12px}
+        .ribbon-item+.ribbon-item::before{content:'·';color:rgba(255,255,255,.2);font-size:1.4rem;margin-right:4px}
+        .ri-num{font-family:var(--fser);font-size:1.6rem;font-weight:700;color:var(--gold-lt);line-height:1}
+        .ri-lbl{font-family:var(--fcap);font-size:.65rem;font-weight:300;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:1px}
+
+        /* ── SHARED SECTION ── */
+        section{padding:100px 56px;position:relative}
+        .inner{max-width:1100px;margin:0 auto}
+        .sec-kicker{font-family:var(--fcap);font-size:.68rem;font-weight:400;letter-spacing:.22em;text-transform:uppercase;color:var(--sienna);margin-bottom:12px}
+        .sec-title{font-family:var(--fser);font-size:clamp(2rem,4.5vw,3.2rem);font-weight:700;color:var(--ink);line-height:1.08;margin-bottom:0}
+        .sec-rule{display:flex;align-items:center;gap:14px;margin:18px 0 24px}
+        .sec-rule span{width:36px;height:1.5px;background:var(--brick)}
+        .sec-rule em{font-family:var(--fser);font-size:.88rem;color:var(--gray);font-style:italic}
+        .sec-body{color:var(--brown);font-size:.95rem;line-height:1.8;max-width:560px}
+
+        /* ── ABOUT ── */
+        .about{background:var(--cream)}
+        .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+        .about-imgs{position:relative;padding-bottom:52px}
+        .about-img-main{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+        .about-img-sm{width:58%;aspect-ratio:1;object-fit:cover;position:absolute;bottom:0;right:-24px;border:5px solid var(--cream)}
+        .about-stamp{position:absolute;top:24px;left:-18px;width:90px;height:90px;background:var(--brick);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 4px 20px rgba(125,35,16,.35)}
+        .stamp-top{font-family:var(--fcap);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);line-height:1.3}
+        .stamp-num{font-family:var(--fser);font-size:1.4rem;font-weight:900;color:var(--white);line-height:1}
+        .stamp-bot{font-family:var(--fcap);font-size:.45rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+        .about-features{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:16px 28px}
+        .af{padding-left:14px;border-left:2px solid var(--parch3)}
+        .af strong{display:block;font-family:var(--fcap);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:2px}
+        .af span{font-size:.82rem;color:var(--gray)}
+
+        /* ── MENU ── */
+        .menu-sec{background:var(--parch)}
+        .menu-header{text-align:center;margin-bottom:56px}
+        .menu-header .sec-rule{justify-content:center}
+        .menu-header .sec-body{margin:0 auto}
+        .menu-tabs{display:inline-flex;gap:0;border:1.5px solid var(--parch3);border-radius:3px;overflow-x:auto;overflow-y:hidden;margin:0 auto 52px;max-width:100%;scrollbar-width:none;width:fit-content}
+        .menu-tabs::-webkit-scrollbar{display:none}
+        .tab{background:transparent;border:none;border-right:1px solid var(--parch3);color:var(--brown);font-family:var(--fcap);font-size:.68rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;padding:10px 16px;cursor:pointer;transition:all var(--ease);white-space:nowrap;flex-shrink:0}
+        .tab:last-child{border-right:none}
+        .tab:hover{background:var(--parch2);color:var(--ink)}
+        .tab.active{background:var(--brick);color:var(--white)}
+
+        .menu-panel{display:none;animation:fadeUp .3s ease both}
+        .menu-panel.active{display:block}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+        /* Two-column editorial menu layout */
+        .menu-cols{display:grid;grid-template-columns:1fr 1fr;gap:0 64px}
+        .menu-col-title{font-family:var(--fser);font-size:1.1rem;font-weight:600;font-style:italic;color:var(--brick);border-bottom:1px solid var(--parch3);padding-bottom:10px;margin-bottom:20px}
+        .menu-item{display:flex;align-items:baseline;gap:8px;padding:11px 0;border-bottom:1px dotted var(--parch3)}
+        .menu-item:last-child{border-bottom:none}
+        .mi-price{display:none}
+        .mi-left{flex:1}
+        .mi-name{font-family:var(--fbod);font-size:.93rem;font-weight:600;color:var(--ink);line-height:1.3}
+        .mi-desc{font-size:.78rem;color:var(--gray);line-height:1.45;margin-top:2px;font-style:italic}
+        .mi-price{font-family:var(--fser);font-size:.95rem;font-weight:700;color:var(--brick);white-space:nowrap;flex-shrink:0}
+        .mi-badge{display:inline-block;background:var(--brick);color:var(--white);font-family:var(--fcap);font-size:.55rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:1px;margin-left:7px;vertical-align:middle}
+        .menu-note{text-align:center;margin-top:36px;font-family:var(--fbod);font-size:.82rem;font-style:italic;color:var(--gray)}
+        .menu-img-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-bottom:52px}
+        .menu-img-strip img{width:100%;aspect-ratio:3/2;object-fit:cover}
+
+        /* ── REVIEWS ── */
+        .reviews{background:var(--parch2)}
+        .reviews .sec-kicker{color:var(--sienna)}
+        .reviews .sec-title{color:var(--ink)}
+        .reviews .sec-rule span{background:var(--brick)}
+        .reviews .sec-rule em{color:var(--gray)}
+        .review-rating{display:flex;align-items:baseline;gap:18px;margin:32px 0 52px}
+        .rr-big{font-family:var(--fser);font-size:5.5rem;font-weight:900;color:var(--ink);line-height:1}
+        .rr-right .stars{color:var(--gold);font-size:1.2rem;letter-spacing:3px}
+        .rr-right p{font-family:var(--fcap);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);margin-top:6px}
+        .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+        .review-card{background:var(--cream);border:1px solid var(--parch3);padding:36px 32px}
+        .rv-mark{display:none}
+        .rv-text{font-family:var(--fbod);font-size:.9rem;font-style:italic;color:var(--brown);line-height:1.75;margin-bottom:20px}
+        .rv-stars{color:var(--gold);font-size:.75rem;letter-spacing:2px;margin-bottom:10px}
+        .rv-author{font-family:var(--fcap);font-size:.72rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+        .rv-meta{font-size:.72rem;color:var(--gray);margin-top:3px}
+
+        /* ── HOURS / INFO ── */
+        .info{background:var(--parch2)}
+        .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+        .hours-list{margin-top:20px}
+        .hours-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(92,50,24,.1)}
+        .hours-row:last-child{border-bottom:none}
+        .hr-day{font-family:var(--fcap);font-size:.72rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--brown)}
+        .hr-time{font-family:var(--fbod);font-size:.88rem;color:var(--ink)}
+        .hr-closed{color:var(--brick);font-style:italic}
+        .info-blocks{margin-top:20px;display:grid;gap:14px}
+        .ib{background:var(--cream);border:1px solid var(--parch3);padding:20px 22px;display:flex;gap:16px;align-items:flex-start}
+        .ib-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+        .ib-title{font-family:var(--fcap);font-size:.68rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--sienna);margin-bottom:4px}
+        .ib-body{font-size:.86rem;color:var(--brown);line-height:1.6}
+        .ib-body a{color:var(--brick);text-decoration:none}
+        .ib-body a:hover{text-decoration:underline}
+
+        /* ── PULLQUOTE ── */
+        .pullquote{background:var(--brick);padding:80px 56px;text-align:center}
+        .pq-text{font-family:var(--fser);font-size:clamp(1.4rem,3vw,2.2rem);font-weight:400;font-style:italic;color:var(--white);max-width:720px;margin:0 auto;line-height:1.5}
+        .pq-text::before,.pq-text::after{content:'\201C';font-size:3rem;color:rgba(255,255,255,.2);vertical-align:-.3em;line-height:0}
+        .pq-text::after{content:'\201D'}
+        .pq-attr{font-family:var(--fcap);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:20px}
+
+        /* ── FOOTER ── */
+        footer{background:var(--ink2);color:var(--white);padding:64px 56px 36px}
+        .footer-in{max-width:1100px;margin:0 auto}
+        .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:56px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.06)}
+        .f-brand{font-family:var(--fser);font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:10px}
+        .f-brand em{color:var(--gold-lt);font-style:italic}
+        .f-tagline{font-size:.83rem;color:rgba(255,255,255,.4);line-height:1.7;max-width:240px;font-style:italic}
+        .f-col h4{font-family:var(--fcap);font-size:.65rem;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+        .f-col ul{list-style:none}
+        .f-col li{margin-bottom:10px}
+        .f-col a{font-size:.84rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color var(--ease)}
+        .f-col a:hover{color:var(--white)}
+        .f-col .f-text{font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.75}
+        .footer-bot{padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+        .footer-bot p{font-size:.75rem;color:rgba(255,255,255,.25)}
+
+        /* ── RESPONSIVE ── */
+        @media(max-width:960px){
+            nav,section,footer{padding-left:28px;padding-right:28px}
+            .ribbon{padding:20px 28px}
+            .about-grid,.info-grid{grid-template-columns:1fr;gap:48px}
+            .about-imgs{padding-bottom:0}
+            .about-img-sm,.about-stamp{display:none}
+            .menu-cols{grid-template-columns:1fr}
+            .reviews-grid{grid-template-columns:1fr;gap:1px}
+            .footer-top{grid-template-columns:1fr;gap:36px}
+            .footer-bot{flex-direction:column;text-align:center}
+            .nav-links{display:none}
+            .hbg{display:flex}
+            .ribbon-in{justify-content:center}
+            .menu-img-strip{grid-template-columns:repeat(2,1fr)}
+        }
+        @media(max-width:600px){
+            section{padding:72px 20px}
+            nav{padding:0 20px}
+            .hero-title{font-size:clamp(2.8rem,13vw,4.5rem)}
+            .menu-tabs{left:0;transform:none;width:100%}
+            .tab{flex:1;padding:10px 10px;font-size:.62rem}
+            .pullquote{padding:60px 24px}
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+    <a href="#" class="nav-logo">Al <em>&</em> Mick's Barbeque</a>
+    <ul class="nav-links">
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#info">Hours</a></li>
+        <li><a href="tel:+12054667777" class="nav-cta">Call Us</a></li>
+        <li><a href="https://www.oneonta-2-go.com/glue/express/125089?delivery=true&utm_source=google&rwg_token=AE37R_iBUmdFjUHTU-OsbIghCstFS_0om6kgoG4VYAvwASKCExYQ0bWkfDwKHOwkfLj6vzvz96FL-9RBTHTIlyjykxFqUWhSDg%3D%3D" target="_blank" rel="noopener" class="nav-cta" style="background:var(--gold)!important;color:var(--ink)!important">Order Online</a></li>
+    </ul>
+    <button class="hbg" id="hbg" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob" id="mob">
+    <div class="mob-inner">
+        <a href="#about" onclick="closeMob()">Our Story</a>
+        <a href="#menu" onclick="closeMob()">Menu</a>
+        <a href="#reviews" onclick="closeMob()">Reviews</a>
+        <a href="#info" onclick="closeMob()">Hours & Info</a>
+        <a href="tel:+12054667777" class="mob-cta">Call (205) 466-7777</a>
+        <a href="https://www.oneonta-2-go.com/glue/express/125089?delivery=true&utm_source=google&rwg_token=AE37R_iBUmdFjUHTU-OsbIghCstFS_0om6kgoG4VYAvwASKCExYQ0bWkfDwKHOwkfLj6vzvz96FL-9RBTHTIlyjykxFqUWhSDg%3D%3D" target="_blank" rel="noopener" class="mob-cta" style="background:var(--gold);color:var(--ink)!important;margin-top:8px">Order Online</a>
+    </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-ov"></div>
+    <div class="hero-c">
+        <div class="hero-rule">
+            <span></span>
+            <em>Snead, Alabama · Est. on US-278</em>
+            <span></span>
+        </div>
+        <h1 class="hero-title">Al <span class="amp">&</span><br>Mick's</h1>
+        <p class="hero-sub">Barbeque</p>
+        <div class="hero-divider"></div>
+        <p class="hero-desc">Pit-smoked low and slow. Generous portions, homemade sides, and Southern hospitality the way it's always been done.</p>
+        <div class="hero-btns">
+            <a href="https://www.oneonta-2-go.com/glue/express/125089?delivery=true&utm_source=google&rwg_token=AE37R_iBUmdFjUHTU-OsbIghCstFS_0om6kgoG4VYAvwASKCExYQ0bWkfDwKHOwkfLj6vzvz96FL-9RBTHTIlyjykxFqUWhSDg%3D%3D" target="_blank" rel="noopener" class="btn btn-gold">Order Online</a>
+            <a href="#menu" class="btn btn-brick">See the Menu</a>
+            <a href="#info" class="btn btn-ghost">Hours & Location</a>
+        </div>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- RIBBON -->
+<div class="ribbon">
+    <div class="ribbon-in">
+        <div class="ribbon-item">
+            <div>
+                <div class="ri-num">4.4</div>
+                <div class="ri-lbl">Google Rating</div>
+            </div>
+        </div>
+        <div class="ribbon-item">
+            <div>
+                <div class="ri-num">814</div>
+                <div class="ri-lbl">Reviews</div>
+            </div>
+        </div>
+        <div class="ribbon-item">
+            <div>
+                <div class="ri-num">US-278</div>
+                <div class="ri-lbl">Snead, AL 35952</div>
+            </div>
+        </div>
+        <div class="ribbon-item">
+            <div>
+                <div class="ri-num" style="font-size:1rem;letter-spacing:.04em">(205) 466-7777</div>
+                <div class="ri-lbl">Call Ahead</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <div class="inner">
+        <div class="about-grid">
+            <div class="about-imgs">
+                <div class="about-stamp">
+                    <div class="stamp-top">Pit</div>
+                    <div class="stamp-num">BBQ</div>
+                    <div class="stamp-bot">Snead, AL</div>
+                </div>
+                <img src="Al and Micks inside.jpg" alt="Inside Al and Mick's" class="about-img-main">
+            </div>
+            <div>
+                <p class="sec-kicker">Our Story</p>
+                <h2 class="sec-title">The Kind of BBQ<br>You Remember</h2>
+                <div class="sec-rule"><span></span><em>slow-smoked, never rushed</em></div>
+                <p class="sec-body">Al & Mick's Barbeque has been a fixture on US-278 in Snead, Alabama — a place where the smoke never really stops rising and the portions are never too small. We're the kind of spot people drive out of their way for and tell their neighbors about.</p>
+                <p class="sec-body" style="margin-top:16px">Our pulled pork is tender and juicy, our baked beans are something people genuinely rave about, and every plate comes with two sides worth every bite. From the drive-through or seated inside, Al & Mick's is real Southern BBQ done right.</p>
+                <div class="about-features">
+                    <div class="af"><strong>Pit Smoked Daily</strong><span>Low & slow, every morning</span></div>
+                    <div class="af"><strong>Drive-Through</strong><span>Quick & easy service</span></div>
+                    <div class="af"><strong>Generous Portions</strong><span>You won't leave hungry</span></div>
+                    <div class="af"><strong>Dine-In Available</strong><span>Comfortable seating</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PULLQUOTE -->
+<div class="pullquote">
+    <p class="pq-text">Once you taste the baked beans, you'll be a customer for life.</p>
+    <p class="pq-attr">— Kalvin Landers, Local Guide · Google Reviews</p>
+</div>
+
+<!-- MENU -->
+<section class="menu-sec" id="menu">
+    <div class="inner">
+        <div class="menu-header">
+            <p class="sec-kicker">What We Serve</p>
+            <h2 class="sec-title">The Menu</h2>
+            <div class="sec-rule"><span></span><em>plates served with two sides of your choice</em></div>
+            <p style="font-family:var(--fbod);font-size:.85rem;font-style:italic;color:var(--gray);margin-top:8px">Prices are listed on our take-out menu — ask for one at the counter or call <a href="tel:+12054667777" style="color:var(--brick)">(205) 466-7777</a>.</p>
+        </div>
+
+        <div class="menu-img-strip">
+            <img src="Al and Micks food.png" alt="BBQ">
+            <img src="Al and Micks food 2.png" alt="BBQ plate">
+            <img src="Al and Micks food 3.png" alt="Sides">
+            <img src="Al and Micks food 4.png" alt="BBQ food">
+        </div>
+
+        <div class="menu-tabs">
+            <button class="tab active" onclick="showTab('appetizers',this)">Appetizers</button>
+            <button class="tab" onclick="showTab('plates',this)">Plates</button>
+            <button class="tab" onclick="showTab('burgers',this)">Burgers</button>
+            <button class="tab" onclick="showTab('sandwiches',this)">Sandwiches & Such</button>
+            <button class="tab" onclick="showTab('steaks',this)">Steaks & Shrimp</button>
+            <button class="tab" onclick="showTab('salads',this)">Salads</button>
+            <button class="tab" onclick="showTab('sides',this)">Sides</button>
+            <button class="tab" onclick="showTab('kids',this)">Kids & Drinks</button>
+            <button class="tab" onclick="showTab('desserts',this)">Desserts</button>
+            <button class="tab" onclick="showTab('family',this)">Family Pack</button>
+            <button class="tab" onclick="showTab('takeout',this)">Take Out</button>
+        </div>
+
+        <!-- APPETIZERS -->
+        <div class="menu-panel active" id="tab-appetizers">
+            <div class="menu-cols">
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Loaded BBQ Fries</div><div class="mi-desc">Fries loaded up with BBQ toppings.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Pub Pickles</div><div class="mi-desc">Crispy fried pickle slices.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Cheese Sticks</div><div class="mi-desc">Golden fried mozzarella cheese sticks.</div></div></div>
+                </div>
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Basket of Onion Rings</div><div class="mi-desc">A basket of our signature battered onion rings.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Basket of Fries</div><div class="mi-desc">Regular or Curly — your choice.</div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PLATES -->
+        <div class="menu-panel" id="tab-plates">
+            <p style="text-align:center;font-family:var(--fbod);font-size:.85rem;font-style:italic;color:var(--gray);margin-bottom:8px">All plates served with your choice of two sides.</p>
+            <p style="text-align:center;font-family:var(--fbod);font-size:.82rem;font-style:italic;color:var(--gray);margin-bottom:32px">Add .95 for baked potato or onion rings &nbsp;·&nbsp; Add 1.95 for tossed salad.</p>
+            <div class="menu-cols">
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">BBQ Pork</div><div class="mi-desc">Slow-smoked pulled pork, tender and full of flavor.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">BBQ Chicken</div><div class="mi-desc">Pit-smoked half chicken, juicy with a smoky finish.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Pork & ½ Chicken Combo</div><div class="mi-desc">The best of both — BBQ pork and half chicken together.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Fried Catfish Filet</div><div class="mi-desc">Golden fried catfish filet, Southern style.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Fried Catfish Filet — Large</div><div class="mi-desc">A larger portion of our golden fried catfish.</div></div></div>
+                </div>
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Grilled Catfish Filet</div><div class="mi-desc">Lightly seasoned catfish filet, grilled fresh.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Grilled Catfish Filet — Large</div><div class="mi-desc">A larger portion of our fresh grilled catfish.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Hamburger Steak</div><div class="mi-desc">A hearty hand-formed hamburger steak, Southern classic.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Chicken Finger</div><div class="mi-desc">Hand-breaded, golden fried chicken fingers.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Grilled Chicken</div><div class="mi-desc">Seasoned grilled chicken breast, cooked fresh to order.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Smothered Grilled Chicken</div><div class="mi-desc">Grilled chicken smothered with onions & peppers, topped with Swiss cheese.</div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BURGERS -->
+        <div class="menu-panel" id="tab-burgers">
+            <p style="text-align:center;font-family:var(--fbod);font-size:.85rem;font-style:italic;color:var(--gray);margin-bottom:32px">All burgers topped with lettuce, tomato, onions, pickles, ketchup, mustard, and mayo. Add bacon for 99¢.</p>
+            <div class="menu-cols">
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Hamburger</div><div class="mi-desc">A classic beef burger with all the fixings.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Cheeseburger</div><div class="mi-desc">Beef patty with melted cheese and all the fixings.</div></div></div>
+                </div>
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Monster Burger</div><div class="mi-desc">Go big — our oversized beef burger loaded with the works.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Large Bacon Cheeseburger</div><div class="mi-desc">A large beef patty with crispy bacon and melted cheese.</div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SANDWICHES & SUCH -->
+        <div class="menu-panel" id="tab-sandwiches">
+            <div class="menu-cols">
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">BBQ Pork Sandwich</div><div class="mi-desc">Smoky pulled pork piled on a toasted bun.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Chicken Finger Sandwich</div><div class="mi-desc">Golden chicken fingers served on a toasted bun.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Grilled Chicken Sandwich</div><div class="mi-desc">Seasoned grilled chicken on a toasted bun.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Hot Dog</div><div class="mi-desc">A classic hot dog, dressed your way.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Grilled Cheese Sandwich</div><div class="mi-desc">Golden, buttery grilled cheese — a timeless classic.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Chicken Finger Basket</div><div class="mi-desc">A basket of golden hand-breaded chicken fingers.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Catfish Sandwich</div><div class="mi-desc">Fried catfish on a bun, Southern style.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Buffalo Chicken Sandwich</div><div class="mi-desc">Crispy chicken tossed in Buffalo sauce on a toasted bun.</div></div></div>
+                </div>
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">BBQ Pork Stuffed Potato</div><div class="mi-desc">A loaded baked potato stuffed with smoky BBQ pork.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Chicken Stuffed Potato</div><div class="mi-desc">Loaded baked potato with chicken. Add peppers & onions for 95¢.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Hot Wings</div><div class="mi-desc">Crispy wings tossed in hot sauce.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Smoked Turkey Club</div><div class="mi-desc">Smoked turkey with bacon, lettuce, tomato, and mayo.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Patty Melt</div><div class="mi-desc">Beef patty with grilled onions and cheese on toasted bread.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">BLT</div><div class="mi-desc">Bacon, lettuce, and tomato on toasted bread.</div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEAKS & SHRIMP -->
+        <div class="menu-panel" id="tab-steaks">
+            <p style="text-align:center;font-family:var(--fbod);font-size:.85rem;font-style:italic;color:var(--gray);margin-bottom:8px">Cooked after 5:00 PM only.</p>
+            <p style="text-align:center;font-family:var(--fbod);font-size:.82rem;font-style:italic;color:var(--gray);margin-bottom:32px">All items include a tossed salad and baked potato, or your choice of two sides.</p>
+            <div class="menu-cols">
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Ribeye — 10–12 oz</div><div class="mi-desc">A juicy, well-marbled ribeye cooked to order.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Ribeye — 16–18 oz</div><div class="mi-desc">Our larger cut ribeye — rich, tender, and satisfying.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">NY Strip — 10 oz</div><div class="mi-desc">A classic New York strip, seasoned and cooked to order.</div></div></div>
+                </div>
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Marinated Pork Tenderloin</div><div class="mi-desc">Tender pork marinated and grilled to perfection.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Fried Shrimp Plate</div><div class="mi-desc">Golden fried shrimp served with your choice of sides.</div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SALADS -->
+        <div class="menu-panel" id="tab-salads">
+            <p style="text-align:center;font-family:var(--fbod);font-size:.85rem;font-style:italic;color:var(--gray);margin-bottom:32px">One dressing included. Each additional dressing 99¢.</p>
+            <div class="menu-cols">
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Toss Salad</div><div class="mi-desc">Fresh tossed greens with your choice of dressing.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">House Salad</div><div class="mi-desc">Our house salad with fresh toppings and dressing.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">BBQ Pork Salad</div><div class="mi-desc">Fresh greens topped with smoky BBQ pulled pork.</div></div></div>
+                </div>
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Chicken Finger Salad</div><div class="mi-desc">Fresh salad topped with golden chicken fingers.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Grilled Chicken Salad</div><div class="mi-desc">Fresh greens topped with seasoned grilled chicken.</div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDES -->
+        <div class="menu-panel" id="tab-sides">
+            <div class="menu-cols">
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Baked or Green Beans</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Cole Slaw</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Potato Salad</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Potato Chips</div></div></div>
+                </div>
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Onion Rings</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Corn on the Cob</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">French Fries or Curly Fries</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Baked Potato</div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KIDS & DRINKS -->
+        <div class="menu-panel" id="tab-kids">
+            <div class="menu-cols">
+                <div>
+                    <p class="menu-col-title">Kids Meals</p>
+                    <p style="font-family:var(--fbod);font-size:.82rem;font-style:italic;color:var(--gray);margin-bottom:16px">8 years & under · Dine-in only · Includes fries & drink · $4.95</p>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Hamburger</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Grilled Cheese</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Hot Dog</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">BBQ Sandwich</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Chicken Fingers</div></div></div>
+                </div>
+                <div>
+                    <p class="menu-col-title">Beverages</p>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Freshly Brewed Iced Tea</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Soft Drinks</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Coffee</div><div class="mi-desc">Regular or Decaf.</div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DESSERTS -->
+        <div class="menu-panel" id="tab-desserts">
+            <div class="menu-cols">
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Vanilla Ice Cream</div><div class="mi-desc">One scoop of creamy vanilla ice cream.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Homemade Pie</div><div class="mi-desc">Ask your server about today's homemade pie selection.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">New York Style Cheesecake</div><div class="mi-desc">Rich, creamy classic New York style cheesecake.</div></div></div>
+                </div>
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Cookie Dough Cheesecake</div><div class="mi-desc">Creamy cheesecake with a cookie dough twist.</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Dessert of the Day</div><div class="mi-desc">Ask about our homemade dessert of the day.</div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAMILY PACK -->
+        <div class="menu-panel" id="tab-family">
+            <p style="text-align:center;font-family:var(--fbod);font-size:.85rem;font-style:italic;color:var(--gray);margin-bottom:32px">Each family pack includes 6 Texas toast or 6 buns and your choice of two sides: baked beans, potato salad, French fries or curly fries, cole slaw, or basket of onion rings.</p>
+            <div class="menu-cols">
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">1 LB BBQ Pork with Sauce</div><div class="mi-desc">A full pound of slow-smoked BBQ pork with sauce, 6 Texas toast or buns, and two sides.</div><div class="mi-price">$25.95</div></div></div>
+                </div>
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">15 Chicken Fingers</div><div class="mi-desc">15 golden fried chicken fingers (fried only) with 6 Texas toast or buns and two sides.</div></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAKE OUT -->
+        <div class="menu-panel" id="tab-takeout">
+            <p style="text-align:center;font-family:var(--fbod);font-size:.85rem;font-style:italic;color:var(--gray);margin-bottom:32px">All BBQ items include sauce. Call <a href="tel:+12054667777" style="color:var(--brick)">(205) 466-7777</a> to place a take-out order.</p>
+            <div class="menu-cols">
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">1 LB BBQ Pork</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">½ LB BBQ Pork</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">½ LB BBQ Chicken</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">BBQ Sauce — ½ Pint</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">BBQ Sauce — Pint</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">BBQ Sauce — Quart</div></div></div>
+                </div>
+                <div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Cole Slaw — Pint</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Cole Slaw — Quart</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Baked Beans</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Potato Salad</div></div></div>
+                    <div class="menu-item"><div class="mi-left"><div class="mi-name">Ranch Dressing — Pint</div></div></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- CALLOUT BANNER -->
+<div style="background:var(--parch2);border-top:1px solid var(--parch3);border-bottom:1px solid var(--parch3);padding:52px 56px">
+    <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center">
+        <div>
+            <p style="font-family:var(--fcap);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sienna);margin-bottom:10px">Take Out & Private Events</p>
+            <h3 style="font-family:var(--fser);font-size:1.9rem;font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:14px">Taking It Home or<br>Booking Our Upstairs Room?</h3>
+            <p style="font-family:var(--fbod);font-size:.92rem;color:var(--brown);line-height:1.75">We offer take-out on everything on the menu — just call ahead and we'll have it ready. We also have an <strong>upstairs room available for reservations</strong>, perfect for group dinners, private events, or family gatherings.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+            <div style="background:var(--cream);border:1px solid var(--parch3);padding:22px 26px;display:flex;gap:16px;align-items:center">
+                <span style="font-size:1.4rem">📞</span>
+                <div>
+                    <div style="font-family:var(--fcap);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sienna);margin-bottom:4px">Call to Order or Reserve</div>
+                    <a href="tel:+12054667777" style="font-family:var(--fser);font-size:1.3rem;font-weight:700;color:var(--brick);text-decoration:none">(205) 466-7777</a>
+                </div>
+            </div>
+            <div style="background:var(--cream);border:1px solid var(--parch3);padding:22px 26px;display:flex;gap:16px;align-items:center">
+                <span style="font-size:1.4rem">🕐</span>
+                <div>
+                    <div style="font-family:var(--fcap);font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sienna);margin-bottom:4px">Lunch Specials</div>
+                    <div style="font-family:var(--fbod);font-size:.9rem;color:var(--ink)">Monday – Friday &nbsp;·&nbsp; 11:00 AM – 2:00 PM</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+    <div class="inner">
+        <p class="sec-kicker">What Guests Are Saying</p>
+        <h2 class="sec-title">Straight from Google</h2>
+        <div class="sec-rule"><span></span><em>814 reviews and counting</em></div>
+        <div class="review-rating">
+            <div class="rr-big">4.4</div>
+            <div class="rr-right">
+                <div class="stars">★★★★★</div>
+                <p>814 Google Reviews</p>
+            </div>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="rv-mark">"</div>
+                <div class="rv-stars">★★★★★</div>
+                <p class="rv-text">This restaurant has some of the best pork barbeque that I have tasted. The meat was juicy and tender with a nice smokey flavor. I also had the baked beans and potato salad, which were outstanding.</p>
+                <div class="rv-author">Sharon Shew</div>
+                <div class="rv-meta">Local Guide · 82 reviews · 6 months ago</div>
+            </div>
+            <div class="review-card">
+                <div class="rv-mark">"</div>
+                <div class="rv-stars">★★★★★</div>
+                <p class="rv-text">Hands down the best BBQ restaurant I have ever been to in my life. The food is amazing and the staff is super nice. My personal favorite is the New York Strip with baked beans. I promise that once you taste the baked beans, you'll be a customer for life!</p>
+                <div class="rv-author">Kalvin Landers</div>
+                <div class="rv-meta">Local Guide · 54 reviews · 1 year ago</div>
+            </div>
+            <div class="review-card">
+                <div class="rv-mark">"</div>
+                <div class="rv-stars">★★★★☆</div>
+                <p class="rv-text">Amazing BBQ fries and bacon double cheeseburger — absolutely loved this place. Delicious food, decent prices, large portions and friendly service.</p>
+                <div class="rv-author">Google Reviewer</div>
+                <div class="rv-meta">Verified Dine-In Guest</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOURS & INFO -->
+<section class="info" id="info">
+    <div class="inner">
+        <div class="info-grid">
+            <div>
+                <p class="sec-kicker">When to Visit</p>
+                <h2 class="sec-title">Hours</h2>
+                <div class="sec-rule"><span></span><em>open 7 days a week</em></div>
+                <div class="hours-list">
+                    <div class="hours-row"><span class="hr-day">Monday</span><span class="hr-time">10:30 AM – 9:00 PM</span></div>
+                    <div class="hours-row"><span class="hr-day">Tuesday</span><span class="hr-time">10:30 AM – 9:00 PM</span></div>
+                    <div class="hours-row"><span class="hr-day">Wednesday</span><span class="hr-time">10:30 AM – 9:00 PM</span></div>
+                    <div class="hours-row"><span class="hr-day">Thursday</span><span class="hr-time">10:30 AM – 9:00 PM</span></div>
+                    <div class="hours-row"><span class="hr-day">Friday</span><span class="hr-time">10:30 AM – 9:00 PM</span></div>
+                    <div class="hours-row"><span class="hr-day">Saturday</span><span class="hr-time">10:30 AM – 9:00 PM</span></div>
+                    <div class="hours-row"><span class="hr-day">Sunday</span><span class="hr-time">10:30 AM – 9:00 PM</span></div>
+                </div>
+            </div>
+            <div>
+                <p class="sec-kicker">Find Us</p>
+                <h2 class="sec-title">Location</h2>
+                <div class="sec-rule"><span></span><em>right on US-278</em></div>
+                <div class="info-blocks">
+                    <div class="ib">
+                        <div class="ib-icon">📍</div>
+                        <div>
+                            <div class="ib-title">Address</div>
+                            <div class="ib-body">88175 US-278, Snead, AL 35952</div>
+                        </div>
+                    </div>
+                    <div class="ib">
+                        <div class="ib-icon">📞</div>
+                        <div>
+                            <div class="ib-title">Phone</div>
+                            <div class="ib-body"><a href="tel:+12054667777">(205) 466-7777</a></div>
+                        </div>
+                    </div>
+                    <div class="ib">
+                        <div class="ib-icon">🚗</div>
+                        <div>
+                            <div class="ib-title">Service Options</div>
+                            <div class="ib-body">Dine-In · Drive-Through · Delivery</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-in">
+        <div class="footer-top">
+            <div>
+                <div class="f-brand">Al <em>&</em> Mick's Barbeque</div>
+                <p class="f-tagline">Real pit-smoked barbeque on US-278 in Snead, Alabama. Generous portions, legendary sides, and Southern hospitality the way it's always been done.</p>
+            </div>
+            <div class="f-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#menu">The Menu</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#info">Hours & Location</a></li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h4>Contact</h4>
+                <div class="f-text">
+                    88175 US-278<br>
+                    Snead, AL 35952<br><br>
+                    <a href="tel:+12054667777" style="color:var(--gold-lt)">(205) 466-7777</a><br><br>
+                    Open 7 Days a Week<br>
+                    10:30 AM – 9:00 PM
+                </div>
+            </div>
+        </div>
+        <div class="footer-bot">
+            <p>© 2025 Al & Mick's Barbeque · Snead, Alabama</p>
+            <div style="display:flex;align-items:center;gap:16px">
+                <a href="https://www.facebook.com/AlandMicks/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.4);text-decoration:none;font-size:.78rem;transition:color .28s ease" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,.4)'">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.791-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.971h-1.513c-1.491 0-1.956.93-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+                    Facebook
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), {passive:true});
+
+    const hbg = document.getElementById('hbg');
+    const mob = document.getElementById('mob');
+    hbg.addEventListener('click', () => { hbg.classList.toggle('open'); mob.classList.toggle('open'); });
+    function closeMob(){ hbg.classList.remove('open'); mob.classList.remove('open'); }
+
+    function showTab(id, el){
+        document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById('tab-'+id).classList.add('active');
+        el.classList.add('active');
+    }
+</script>
+</body>
+</html>
